@@ -13,7 +13,7 @@ const Featured = () => {
             <div className="featuredItem">
                 <img src="https://cdn.pixabay.com/photo/2020/01/22/18/23/istanbul-4785964_960_720.jpg" className="featuredImg" alt="Istambul"/>
                 <div className="featuredTitle">
-                    <h1>Istambul</h1>
+                    <h1>Istanbul</h1>
                     <h2>89 properties</h2>
                 </div>
             </div>
