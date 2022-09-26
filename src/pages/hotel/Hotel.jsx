@@ -62,7 +62,7 @@ const Hotel = () => {
                             <FontAwesomeIcon icon={faXmark} className="closeIcon" onClick={() => setOpenSlider(false)}/>
                             <FontAwesomeIcon icon={faChevronLeft} className="arrowIcon" onClick={() => handleMove("l")}/>
                             <div className="sliderWrapper">
-                                <img src={gallery[slideIndex].src} className="sliderImage"/>
+                                <img src={gallery[slideIndex].src} className="sliderImage" alt="interiors"/>
                             </div>
                             <FontAwesomeIcon icon={faChevronRight} className="arrowIcon" onClick={() => handleMove("r")}/>
                         </div>
@@ -79,11 +79,10 @@ const Hotel = () => {
                     <div className="hotelImages">
                         { gallery.map((photo, i) => (
                             <div className="hotelImageWrapper">
-                                <img onClick={() => handleOpen(i)} src={photo.src} alt="" className="hotelImg"/>
+                                <img onClick={() => handleOpen(i)} src={photo.src} alt="hotel" className="hotelImg"/>
                             </div>
                         ))}
                     </div>
-
                     <div className="hotelDetails">
                             <div className="hotelDetailsTexts">
                                 <h1 className="hotelTitle">Stay in the heart of Lisbon</h1>
