@@ -2,11 +2,34 @@ import './hotel.css';
 import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faChevronLeft, faLocationDot, faChevronRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import MainList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
+import { useState } from 'react';
 
 const Hotel = () => {
+
+    const [ slideIndex, setSlideIndex ] = useState(0);
+
+    const [ openSlider, setOpenSlider ] = useState(false);
+
+    const handleOpen = (i) => {
+        setSlideIndex(i)
+        setOpenSlider(true)
+
+    }
+
+    const handleMove = (direction) => {
+        let newSlideIndex;
+
+        if(direction === "l") {
+            newSlideIndex = slideIndex === 0 ? 5 : slideIndex -1
+        } else {
+            newSlideIndex = slideIndex === 5 ? 0 : slideIndex+1
+        }
+
+        setSlideIndex(newSlideIndex)
+    }
 
     const gallery = [
         {
@@ -33,6 +56,17 @@ const Hotel = () => {
             <Navbar />
             <Header type="list"/>
             <div className="hotelContainer">
+                {
+                    openSlider &&
+                        <div className="slider">
+                            <FontAwesomeIcon icon={faXmark} className="closeIcon" onClick={() => setOpenSlider(false)}/>
+                            <FontAwesomeIcon icon={faChevronLeft} className="arrowIcon" onClick={() => handleMove("l")}/>
+                            <div className="sliderWrapper">
+                                <img src={gallery[slideIndex].src} className="sliderImage"/>
+                            </div>
+                            <FontAwesomeIcon icon={faChevronRight} className="arrowIcon" onClick={() => handleMove("r")}/>
+                        </div>
+                }
                 <div className="hotelWrapper">
                     <button className="bookNowButton">Reserve or book now!</button>
                     <h1 className="hotelTitle">Grand Hotel</h1>
@@ -43,9 +77,9 @@ const Hotel = () => {
                     <span className="hotelDistance">Excellent location - 600m from center</span>
                     <span className="hotelPriceHighlight">Book a stay over EUR 114 at this property and get a free airport taxi</span>
                     <div className="hotelImages">
-                        { gallery.map(photo => (
+                        { gallery.map((photo, i) => (
                             <div className="hotelImageWrapper">
-                                <img src={photo.src} alt="" className="hotelImg"/>
+                                <img onClick={() => handleOpen(i)} src={photo.src} alt="" className="hotelImg"/>
                             </div>
                         ))}
                     </div>
