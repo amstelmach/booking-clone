@@ -1,7 +1,16 @@
 import './searchitem.css';
 
+import { useNavigate } from 'react-router-dom';
+
 
 const SearchItem = () => {
+
+    const navigate = useNavigate();
+
+    const handleSearch = () => {
+        navigate("/hotels/1");
+    }
+
     return (
         <div className="searchItem">
             <img 
@@ -26,7 +35,7 @@ const SearchItem = () => {
                 <div className="searchItemDetailTexts">
                   <span className="searchItemPrice">EUR 489</span>
                   <span className="searchItemTax">Includes taxes and fees</span>
-                  <button className="searchItemButton">See availability</button>  
+                  <button className="searchItemButton" onClick={handleSearch} >See availability</button>  
                 </div>
             </div>
         </div>
